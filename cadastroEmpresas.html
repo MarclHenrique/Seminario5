@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Helpdesk - Cadastro</title>
+    <link rel="stylesheet" href="assets/css/styleCadastro.css">
+</head>
+
+<body>
+    <div class="register-container">
+        <h2>Cadastre-se no Sistema de Helpdesk</h2>
+        <form id="register-form" action="#">
+            <div class="input-container">
+                <input type="text" id="name" placeholder="Nome Empresa">
+                <span id="name-error" class="error-message"></span>
+            </div>
+            <div class="input-container">
+                <input type="text" id="email" placeholder="E-mail">
+                <span id="email-error" class="error-message"></span>
+            </div>
+            <div class="input-container">
+                <input type="text" id="email" placeholder="CNPJ">
+                <span id="email-error" class="error-message"></span>
+            </div>
+            <div class="input-container">
+                <input type="tel" id="email" placeholder="Telefone">
+                <span id="email-error" class="error-message"></span>
+            </div>
+            <div class="input-container">
+                <input type="password" id="password" placeholder="Senha">
+                <span id="password-error" class="error-message"></span>
+            </div>
+            <div class="input-container">
+                <input type="password" id="confirm-password" placeholder="Confirmar Senha">
+                <span id="confirm-password-error" class="error-message"></span>
+            </div>
+            <button type="button" onclick="validateForm()">Cadastrar</button>
+        </form>
+        <p>Já tem uma conta? <a href="login.html">Faça login</a></p>
+    </div>
+
+    <script src="script_tela_cadastro.js"></script>
+</body>
+
+</html>

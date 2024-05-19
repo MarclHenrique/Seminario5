@@ -1,0 +1,249 @@
+/* Estilos Gerais */
+body {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    background-color: #f7f8fa;
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
+.sidebar {
+    left:-1px;
+    width: 95px;
+    background-color: #2C3E50;
+    color: white;
+    padding-top: 20px;
+    height: 100vh;
+    position: fixed;
+}
+
+.sidebar h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.sidebar ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.sidebar ul li {
+    padding: 10px;
+    text-align: center;
+}
+
+.sidebar ul li a {
+    color: white;
+    text-decoration: none;
+    display: block;
+}
+
+.sidebar ul li a:hover {
+    background-color: #34495E;
+}
+
+.main-content {
+    margin-left: 70px;
+    width: calc(100% - 200px);
+    padding: top;
+}
+
+/* Cabeçalho */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+    background-color: #007bff;
+    color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.header-left h1 {
+    margin: 0;
+    font-size: 24px;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+}
+
+.header-right .btn-new,
+.header-right .dropdown-toggle {
+    margin-right: 10px;
+    padding: 10px 15px;
+    background-color: #0056b3;
+    border: none;
+    border-radius: 4px;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s; /* Alteração adicionada */
+}
+
+.header-right .btn-new:hover,
+.header-right .dropdown-toggle:hover {
+    background-color: #003d82;
+    filter: brightness(90%); /* Alteração adicionada */
+}
+
+.header-right input {
+    padding: 10px 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+/* Banner */
+.banner {
+    background-color: #0056b3;
+    color: #fff;
+    padding: 30px 20px;
+    text-align: center;
+    position: relative;
+}
+
+.banner p {
+    font-size: 18px;
+    margin: 0;
+}
+
+.btn-free-trial {
+    padding: 10px 20px;
+    background-color: #ffc107;
+    border: none;
+    border-radius: 4px;
+    color: #333;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s; /* Alteração adicionada */
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+}
+
+.btn-free-trial:hover {
+    background-color: #e0a800;
+    filter: brightness(90%); /* Alteração adicionada */
+}
+
+/* Estatísticas */
+.stats {
+    display: flex;
+    justify-content: space-around;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin: 20px 0;
+}
+
+.stat-item {
+    text-align: center;
+}
+
+.stat-item p {
+    font-size: 14px;
+    color: #666;
+}
+
+.stat-item h2 {
+    font-size: 32px;
+    margin: 10px 0 0;
+    color: #007bff;
+}
+
+/* Detalhes */
+.details {
+    display: flex;
+    justify-content: space-around;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.details .emails,
+.details .tasks,
+.details .tickets {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 20px;
+    width: 30%;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.details h3 {
+    margin-top: 0;
+    font-size: 18px;
+    color: #007bff;
+}
+
+.details p {
+    font-size: 14px;
+    color: #666;
+    margin: 5px 0;
+}
+
+.details a {
+    display: block;
+    margin-top: 10px;
+    font-size: 14px;
+    color: #007bff;
+    text-decoration: none;
+    transition: color 0.3s; /* Alteração adicionada */
+}
+
+.details a:hover {
+    color: #0056b3;
+}
+
+.btn-add-task {
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: #28a745;
+    border: none;
+    border-radius: 4px;
+    color: #fff;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s; /* Alteração adicionada */
+}
+
+.btn-add-task:hover {
+    background-color: #218838;
+    filter: brightness(90%); /* Alteração adicionada */
+}
+
+/* Dropdown */
+.dropdown {
+    position: relative;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    right: 0;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-top: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    opacity: 0; /* Alteração adicionada */
+    transition: opacity 0.3s; /* Alteração adicionada */
+}
+
+.dropdown-menu a {
+    display: block;
+    padding: 10px 20px;
+    text-decoration: none;
+    color: #333;
+    transition: background-color 0.3s;
+}
+
+.dropdown-menu a:hover {
+    background-color: #f4f4f4;
+}
+
+.dropdown:hover .dropdown-menu {
+    display: block;
+    opacity: 1; /* Alteração adicionada */
+}
