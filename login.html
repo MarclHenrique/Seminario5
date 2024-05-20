@@ -11,12 +11,13 @@
 <body>
     <div class="login-container">
         <h2>Bem-vindo ao Sistema de Helpdesk</h2>
-        <form action="#">
-            <input type="text" placeholder="Usuário">
-            <input type="password" placeholder="Senha">
-            <select>
-                <option value="admin">Entrar como Administrador</option>
-                <option value="client">Entrar como Cliente</option>
+        <form action="login.php" method="post">
+            <input type="text" name="cnpj" placeholder="Cnpj" required>
+            <input type="password" name="password" placeholder="Senha" required>
+            <select name="role">
+          
+                <option value="3">Entrar como Cliente</option>
+                
             </select>
             <button type="submit">Login</button>
         </form>
