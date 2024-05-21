@@ -1,49 +1,64 @@
 /* Estilo para o corpo da página */
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Arial', sans-serif;
     background-color: #f0f0f0;
     margin: 0;
     padding: 0;
+    color: #333; /* Cor do texto */
 }
+
 /* Contêiner principal para o formulário */
 .container {
     max-width: 600px;
     margin: 50px auto;
     padding: 20px;
     background-color: #fff;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1); /* Sombra suave ao redor do contêiner */
+    box-shadow: 0 0 15px rgba(0,0,0,0.1); /* Sombra suave ao redor do contêiner */
+    border-radius: 10px; /* Bordas arredondadas */
 }
+
 /* Estilo para o título do formulário */
 h2 {
     text-align: center;
     margin-bottom: 30px;
+    font-size: 24px; /* Tamanho da fonte */
+    color: #007BFF; /* Cor do título */
 }
+
 /* Estilo para os rótulos dos campos */
 label {
     display: block;
-    margin-bottom: 5px;
+    margin-bottom: 8px;
+    font-weight: bold; /* Negrito */
 }
+
 /* Estilo para os campos de texto e área de texto */
-input[type="text"], textarea {
+input[type="text"], textarea, select {
     width: 100%;
-    padding: 10px;
+    padding: 12px;
     margin-bottom: 20px;
     border-radius: 5px;
     border: 1px solid #ccc; /* Bordas arredondadas e cor da borda */
+    box-sizing: border-box; /* Inclui padding e border no tamanho total */
+    font-size: 16px; /* Tamanho da fonte */
+    transition: border-color 0.3s; /* Transição suave para a cor da borda */
 }
+input[type="text"]:focus, textarea:focus, select:focus {
+    border-color: #007BFF; /* Cor da borda ao focar no campo */
+    outline: none; /* Remove o contorno padrão */
+}
+
 textarea {
     resize: vertical; /* Permite redimensionar verticalmente a área de texto */
+    min-height: 100px; /* Altura mínima */
 }
-/* Estilo para o campo de arquivo */
-input[type="file"] {
-    margin-bottom: 20px;
-}
+
 /* Estilo para os botões */
 button {
     background-color: #007BFF;
     color: white;
     border: none;
-    padding: 10px 20px;
+    padding: 12px 20px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
@@ -52,7 +67,16 @@ button {
     cursor: pointer;
     width: 100%;
     border-radius: 5px; /* Bordas arredondadas */
+    transition: background-color 0.3s; /* Transição suave para a cor de fundo */
 }
 button:hover {
     background-color: #0056b3; /* Cor de fundo ao passar o mouse sobre o botão */
+}
+
+/* Estilo para o botão secundário */
+button[type="button"] {
+    background-color: #6c757d; /* Cor de fundo para o botão de fechar */
+}
+button[type="button"]:hover {
+    background-color: #5a6268; /* Cor de fundo ao passar o mouse sobre o botão de fechar */
 }
