@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Novo Agente</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
         /* CSS Reset */
         * {
@@ -18,11 +21,12 @@
             background-color: #f5f5f5;
             color: #333;
             display: flex;
+            min-height: 100vh;
         }
 
         .sidebar {
             width: 250px;
-            background-color: #007bff;
+            background-color: #000;
             color: #fff;
             height: 100vh;
             padding-top: 20px;
@@ -45,24 +49,37 @@
         }
 
         .sidebar a:hover {
-            background-color: #0056b3;
+            background-color: #444;
+        }
+
+        .header {
+            width: 100%;
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: fixed;
+            top: 0;
+            left: 250px;
+            height: 60px;
         }
 
         .container {
             margin-left: 250px;
-            padding: 20px;
+            padding: 80px 20px 20px; /* Adjusted padding for header space */
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            height: 100vh;
             width: calc(100% - 250px);
         }
 
         h1 {
             font-size: 24px;
             margin-bottom: 20px;
-            color: #007bff; /* Azul */
+            color: #007bff;
         }
 
         .form-group {
@@ -123,6 +140,37 @@
         button[type="submit"]:hover {
             background-color: #0056b3;
         }
+
+        @media screen and (max-width: 768px) {
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: relative;
+            }
+
+            .sidebar a {
+                text-align: left;
+                padding-left: 30px;
+            }
+
+            .header {
+                left: 0;
+                width: 100%;
+                padding-left: 270px;
+            }
+
+            .container {
+                margin-left: 0;
+                width: 100%;
+                padding: 100px 20px 20px;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            .header {
+                padding-left: 20px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -131,6 +179,9 @@
         <a href="#abrir-ticket">Abrir Ticket</a>
         <a href="#historico-tickets">Histórico de Tickets</a>
         <a href="#administracao">Administração</a>
+    </div>
+    <div class="header">
+        <span>Painel de Controle</span>
     </div>
     <div class="container">
         <h1>Novo Agente</h1>

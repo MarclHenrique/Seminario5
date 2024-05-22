@@ -1,5 +1,5 @@
- /* CSS Reset */
- * {
+/* CSS Reset */
+* {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
@@ -12,19 +12,28 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
+    padding: 20px;
+    color: #333;
 }
 
 .register-container {
+    width: 100%;
     max-width: 400px;
     background-color: #fff;
     border-radius: 10px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
     padding: 40px;
     text-align: center;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
 }
 
 .register-container h2 {
-    font-size: 28px;
+    font-size: 24px;
     margin-bottom: 20px;
     color: #333;
 }
@@ -34,23 +43,18 @@ body {
 }
 
 .input-container input {
-    width: calc(100% - 24px);
+    width: 100%;
     padding: 12px;
     border: 1px solid #ccc;
     border-radius: 5px;
     font-size: 16px;
-    transition: border-color 0.3s;
+    transition: border-color 0.3s, box-shadow 0.3s;
 }
 
 .input-container input:focus {
     border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
     outline: none;
-}
-
-.error-message {
-    color: red;
-    font-size: 14px;
-    margin-top: 5px;
 }
 
 button {
@@ -91,18 +95,12 @@ a:hover {
     }
 
     .register-container h2 {
-        font-size: 24px;
+        font-size: 20px;
         margin-bottom: 15px;
     }
 
     .input-container input {
-        width: calc(100% - 20px);
-        padding: 10px;
         font-size: 14px;
-    }
-
-    .error-message {
-        font-size: 12px;
     }
 
     button {
