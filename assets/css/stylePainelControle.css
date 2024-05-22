@@ -5,11 +5,12 @@ body {
     margin: 0;
     padding: 0;
     color: #333;
+    overflow-x: hidden;
 }
 
 .sidebar {
-    width: 250px;
-    background-color: #000;
+    width: 200px;
+    background-color: #504d4d;
     color: white;
     padding-top: 20px;
     height: 100vh;
@@ -20,6 +21,7 @@ body {
     flex-direction: column;
     align-items: center;
     transition: width 0.3s;
+    box-sizing: border-box;
 }
 
 .sidebar h2 {
@@ -45,18 +47,21 @@ body {
     display: block;
     width: 100%;
     padding: 10px;
-    transition: background-color 0.3s;
+    transition: background-color 0.3s, padding 0.3s;
 }
 
 .sidebar ul li a:hover {
     background-color: #444;
+    padding: 8px; /* Mantém o mesmo padding para evitar crescimento */
 }
 
+
 .main-content {
-    margin-left: 250px;
-    padding: 20px;
-    width: calc(100% - 250px);
+    margin-left: 200px;
+    padding: 8px;
+    width: calc(100% - 200px);
     transition: margin-left 0.3s, width 0.3s;
+    box-sizing: border-box;
 }
 
 header {
@@ -66,6 +71,8 @@ header {
     padding: 15px 30px;
     background-color: #007bff;
     color: #fff;
+    box-sizing: border-box;
+    width: 100%;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
@@ -77,6 +84,7 @@ header {
 .header-right {
     display: flex;
     align-items: center;
+    flex-wrap: wrap;
 }
 
 .header-right .btn-new,
@@ -109,6 +117,7 @@ header {
     justify-content: space-around;
     padding: 20px;
     background-color: #fff;
+    box-sizing: border-box;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     margin: 20px 0;
 }
@@ -149,6 +158,7 @@ header {
     flex: 1;
     min-width: 200px;
     margin: 10px;
+    box-sizing: border-box;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
@@ -205,6 +215,7 @@ header {
     border: 1px solid #ccc;
     border-radius: 4px;
     margin-top: 10px;
+    box-sizing: border-box;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     opacity: 0;
     transition: opacity 0.3s;
@@ -248,6 +259,7 @@ header {
     .header-right {
         flex-direction: column;
         align-items: flex-start;
+        width: 100%;
     }
 
     .header-right .btn-new,
@@ -259,10 +271,12 @@ header {
 
     .stats {
         flex-direction: column;
+        align-items: stretch;
     }
 
     .details {
         flex-direction: column;
+        align-items: stretch;
     }
 
     .details .emails,
