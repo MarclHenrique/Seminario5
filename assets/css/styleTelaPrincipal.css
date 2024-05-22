@@ -24,7 +24,7 @@ body {
 /* Estilos do cabeçalho */
 .header {
     text-align: center;
-    margin-top: 100px;
+    margin-top: 60px;
     margin-bottom: 50px;
 }
 
@@ -39,6 +39,7 @@ body {
     font-size: 20px; /* Aumentando o tamanho do texto */
     margin-bottom: 30px;
     line-height: 1.6;
+    text-align: jus;
 }
 
 /* Menu de navegação */
@@ -102,9 +103,10 @@ body {
 
 /* Estilos das seções */
 .section {
-    padding: 100px 20px;
+    padding: 90px 20px;
     opacity: 0;
     transition: opacity 1s ease-in-out;
+    margin-top: -100px
 }
 
 .section.visible {
@@ -156,7 +158,7 @@ body {
 }
 
 /* Rodapé */
-.footer {
+footer {
     text-align: center;
     padding: 30px; /* Aumentando o preenchimento do rodapé */
     background-color: #007bff;
@@ -180,6 +182,10 @@ body {
     max-width: 100%;
     border-radius: 10px;
     margin-bottom: 15px;
+}
+
+#o-que-fazemos {
+    margin-top: -300px; /* Adicionando margem superior para separar do conteúdo anterior */
 }
 
 /* Responsividade */
