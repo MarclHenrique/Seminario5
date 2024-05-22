@@ -1,5 +1,5 @@
- /* CSS Reset */
- * {
+/* CSS Reset */
+* {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
@@ -34,6 +34,12 @@ h2 {
     margin-bottom: 20px;
     position: relative;
     overflow: hidden;
+    transition: transform 0.3s;
+}
+
+.call:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
 }
 
 .call h3 {
@@ -52,6 +58,7 @@ h2 {
     justify-content: space-between;
     align-items: center;
     margin-top: 10px;
+    flex-wrap: wrap;
 }
 
 .call .meta span {
@@ -116,4 +123,35 @@ select {
     color: #333;
     font-size: 14px;
     cursor: pointer;
+}
+
+@media (max-width: 600px) {
+    .container {
+        padding: 20px;
+    }
+
+    h2 {
+        font-size: 24px;
+    }
+
+    .call h3 {
+        font-size: 18px;
+    }
+
+    .call p {
+        font-size: 14px;
+    }
+
+    .call .meta {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .call .meta span {
+        margin-bottom: 5px;
+    }
+
+    .status {
+        font-size: 12px;
+    }
 }
