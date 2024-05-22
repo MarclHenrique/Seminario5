@@ -1,48 +1,49 @@
 <?php
 session_start();
-require_once 'Database.php';
 
-if (!isset($_SESSION['username'])) {
-    die("Acesso negado. Por favor, faça login primeiro.");
-}
+$cod_empresa = $_SESSION['cod_empresa'];
+// Define o fuso horário
+date_default_timezone_set('America/Sao_Paulo');
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $cnpj = $_POST['cnpj'];
+// Inclui a classe Database
+require_once 'database.php';
+
+// Verifica se o formulário foi enviado
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Obtém os dados do formulário
     $nome = $_POST['nome'];
     $status_ticket = $_POST['status_ticket'];
     $prioridade = $_POST['prioridade'];
     $descricao = $_POST['descricao'];
-    $cod_empresa = $_POST['cod_empresa'];
-    $data_hora = date('Y-m-d H:i:s'); // Data e hora atuais
 
-    // Conectando ao banco de dados
+    // Obtém a data e hora atual do sistema
+    $data_hora = date('Y-m-d H:i:s');
+
+    // Cria uma instância da classe Database e obtém a conexão
     $database = new Database();
     $conn = $database->getConnection();
 
-    // Evitar SQL Injection
-    $cnpj = $conn->real_escape_string($cnpj);
-    $nome = $conn->real_escape_string($nome);
-    $status_ticket = $conn->real_escape_string($status_ticket);
-    $prioridade = $conn->real_escape_string($prioridade);
-    $descricao = $conn->real_escape_string($descricao);
-    $cod_empresa = $conn->real_escape_string($cod_empresa);
+    // Prepara a consulta SQL para evitar injeção de SQL
+    $sql = "INSERT INTO ticket (titulo, status_ticket, prioridade, descricao,cod_empresa ,data_hora) VALUES (?, ?, ?, ?, ?,?)";
 
-    // Inserindo os dados no banco de dados
-    $sql = "INSERT INTO ticket (status_ticket, data_hora, prioridade, descricao, cod_empresa)
-            VALUES (?, ?, ?, ?, ?)";
-    
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("sssss", $status_ticket, $data_hora, $prioridade, $descricao, $cod_empresa);
+    if ($stmt = $conn->prepare($sql)) {
+        // Vincula os parâmetros à consulta SQL
+        $stmt->bind_param("ssssss", $nome, $status_ticket, $prioridade, $descricao,$cod_empresa ,$data_hora);
 
-    if ($stmt->execute()) {
-        echo "Chamado cadastrado com sucesso!";
+        // Executa a consulta
+        if ($stmt->execute()) {
+            echo "Chamado criado com sucesso.";
+        } else {
+            echo "Erro: Não foi possível criar o chamado. " . $stmt->error;
+        }
+
+        // Fecha a declaração
+        $stmt->close();
     } else {
-        echo "Erro: " . $stmt->error;
+        echo "Erro: Não foi possível preparar a consulta. " . $conn->error;
     }
 
-    $stmt->close();
+    // Fecha a conexão
     $conn->close();
-} else {
-    echo "Método de requisição inválido.";
 }
 ?>

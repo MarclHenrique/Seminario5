@@ -1,5 +1,6 @@
 <?php
 session_start();
+
 require_once 'Database.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -16,25 +17,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $password = $conn->real_escape_string($password);
 
     // Consulta SQL para verificar o usuário e a senha
-    $sql = "SELECT * FROM empresa WHERE cnpj = '$cnpj' AND senha = '$password'";
+    $sql = "SELECT cod_empresa FROM empresa WHERE cnpj = '$cnpj' AND senha = '$password'";
 
     $result = $conn->query($sql);
 
     if ($result && $result->num_rows > 0) {
-        // O usuário foi encontrado, redireciona para o painel apropriado
-        $_SESSION['username'] = $username;
+        // O usuário foi encontrado, armazena o código da empresa na sessão
+        $row = $result->fetch_assoc();
+        $_SESSION['cod_empresa'] = $row['cod_empresa'];
         $_SESSION['role'] = $role;
-            if($role =='3'){
+        
+        // Redireciona para o painel apropriado
+        if($role == '3') {
             header("Location: PainelControle.html");
+            exit();
         }
-        exit();
     } else {
-        echo "Usuário ou senha usuário incorretos!";
+        echo "Usuário ou senha incorretos!";
     }
 
     $conn->close();
 } else {
     echo "Método de requisição inválido.";
 }
-
 ?>

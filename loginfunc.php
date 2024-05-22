@@ -1,5 +1,6 @@
 <?php
 session_start();
+$_SESSION['cod_empresa'] = $codigo_da_empresa;
 require_once 'Database.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
