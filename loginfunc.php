@@ -26,7 +26,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $_SESSION['email'] = $email;
         $_SESSION['role'] = $role;
             if($role =='1'){
-            header("Location: PainelControle.html");
+            header("Location: PainelControleAdm.html");
         } else if ($role == '2'){
             header("Location: PainelControle.html");
         }
