@@ -9,9 +9,10 @@ body {
 }
 
 .sidebar {
+    
     width: 200px;
     background-color: #504d4d;
-    color: white;
+    color: rgb(179, 42, 42);
     padding-top: 20px;
     height: 100vh;
     position: fixed;
@@ -30,6 +31,7 @@ body {
 }
 
 .sidebar ul {
+    
     list-style-type: none;
     padding: 0;
     width: 100%;
@@ -42,7 +44,8 @@ body {
 }
 
 .sidebar ul li a {
-    color: white;
+    
+    color: rgb(146, 1, 1);
     text-decoration: none;
     display: block;
     width: 100%;
