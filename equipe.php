@@ -45,13 +45,22 @@ function atualizarAnalista($id, $nome, $email, $senha, $telefone)
     $conn->close();
 }
 
-// Função para buscar todos os analistas
-function buscarAnalistas()
+// Função para buscar todos os analistas ou pesquisar por nome
+function buscarAnalistas($searchTerm = '')
 {
     $db = new Database();
     $conn = $db->getConnection();
 
-    $result = $conn->query("SELECT id_usuario, nome, email, telefone FROM usuarios WHERE tp_usuario = '2'");
+    if ($searchTerm) {
+        $stmt = $conn->prepare("SELECT id_usuario, nome, email, telefone FROM usuarios WHERE tp_usuario = '2' AND nome LIKE ?");
+        $likeTerm = "%".$searchTerm."%";
+        $stmt->bind_param("s", $likeTerm);
+    } else {
+        $stmt = $conn->prepare("SELECT id_usuario, nome, email, telefone FROM usuarios WHERE tp_usuario = '2'");
+    }
+
+    $stmt->execute();
+    $result = $stmt->get_result();
 
     $analistas = [];
     if ($result->num_rows > 0) {
@@ -60,6 +69,7 @@ function buscarAnalistas()
         }
     }
 
+    $stmt->close();
     $conn->close();
 
     return $analistas;
@@ -80,8 +90,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 
-// Busca todos os analistas
-$analistas = buscarAnalistas();
+// Se o método de requisição for GET, verifica se há um termo de pesquisa
+$searchTerm = '';
+if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['search'])) {
+    $searchTerm = $_GET['search'];
+}
+
+// Busca todos os analistas ou pesquisa pelo termo
+$analistas = buscarAnalistas($searchTerm);
+
+// Variáveis para o formulário de edição
+$editAnalista = null;
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['action']) && $_POST['action'] == "editar") {
+    $editAnalista = [
+        'id_usuario' => $_POST['id'],
+        'nome' => $_POST['nome'],
+        'email' => $_POST['email'],
+        'telefone' => $_POST['telefone'],
+    ];
+}
 ?>
 
 <!DOCTYPE html>
@@ -92,6 +119,7 @@ $analistas = buscarAnalistas();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Equipe - Gerenciamento de Analistas</title>
     <link rel="stylesheet" href="assets/css/styleEquipe.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 
 <body>
@@ -112,9 +140,34 @@ $analistas = buscarAnalistas();
             <button type="submit">Inserir</button>
         </form>
 
+        <?php if ($editAnalista): ?>
+            <h3>Editar Analista</h3>
+            <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+                <input type="hidden" name="action" value="atualizar">
+                <input type="hidden" name="id" value="<?php echo $editAnalista['id_usuario']; ?>">
+                <label for="edit_nome">Nome:</label>
+                <input type="text" id="edit_nome" name="nome" value="<?php echo $editAnalista['nome']; ?>" required><br>
+                <label for="edit_email">Email:</label>
+                <input type="email" id="edit_email" name="email" value="<?php echo $editAnalista['email']; ?>" required><br>
+                <label for="edit_senha">Senha:</label>
+                <input type="password" id="edit_senha" name="senha" required><br>
+                <label for="edit_telefone">Telefone:</label>
+                <input type="text" id="edit_telefone" name="telefone" value="<?php echo $editAnalista['telefone']; ?>" required><br>
+                <button type="submit">Atualizar</button>
+            </form>
+        <?php endif; ?>
+
+        <h3>Buscar Analista</h3>
+        <form method="get" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+            <label for="search">Nome:</label>
+            <input type="text" id="search" name="search" value="<?php echo htmlspecialchars($searchTerm); ?>">
+            <button type="submit">Pesquisar</button>
+        </form>
+
         <h3>Analistas Cadastrados</h3>
         <table>
             <tr>
+                <th>ID</th>
                 <th>Nome</th>
                 <th>Email</th>
                 <th>Telefone</th>
@@ -122,14 +175,23 @@ $analistas = buscarAnalistas();
             </tr>
             <?php foreach ($analistas as $analista) : ?>
                 <tr>
+                    <td><?php echo $analista['id_usuario']; ?></td>
                     <td><?php echo $analista['nome']; ?></td>
                     <td><?php echo $analista['email']; ?></td>
                     <td><?php echo $analista['telefone']; ?></td>
                     <td>
-                        <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+                        <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" class="action-form">
                             <input type="hidden" name="action" value="deletar">
                             <input type="hidden" name="id" value="<?php echo $analista['id_usuario']; ?>">
-                            <button type="submit">Deletar</button>
+                            <button type="submit"><i class="fas fa-trash icon-trash"></i></button>
+                        </form>
+                        <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" class="action-form">
+                            <input type="hidden" name="action" value="editar">
+                            <input type="hidden" name="id" value="<?php echo $analista['id_usuario']; ?>">
+                            <input type="hidden" name="nome" value="<?php echo $analista['nome']; ?>">
+                            <input type="hidden" name="email" value="<?php echo $analista['email']; ?>">
+                            <input type="hidden" name="telefone" value="<?php echo $analista['telefone']; ?>">
+                            <button type="submit"><i class="fas fa-pen icon-pen"></i></button>
                         </form>
                     </td>
                 </tr>

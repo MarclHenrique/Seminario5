@@ -1,6 +1,31 @@
+<?php
+// Inclui o arquivo de conexão com o banco de dados
+require_once 'Database.php';
+
+
+// Instancia a classe Database para obter a conexão
+$db = new Database();
+$conn = $db->getConnection();
+
+// Consulta para contar o número de tickets em diferentes estados
+$sql = "SELECT 
+            COUNT(CASE WHEN status_ticket = 'pendente' THEN 1 END) AS pendente,
+            COUNT(CASE WHEN status_ticket = 'Aberto' THEN 1 END) AS aberto,
+            COUNT(CASE WHEN status_ticket = 'Resolvido' THEN 1 END) AS resolvido,
+            COUNT(CASE WHEN cod_analista IS NULL OR cod_analista = '' THEN 1 END) AS nao_atribuido
+        FROM ticket";
+
+
+$result = $conn->query($sql);
+$row = $result->fetch_assoc();
+
+$pendente = $row['pendente'];
+$aberto = $row['aberto'];
+$resolvido = $row['resolvido'];
+$naoAtribuido = $row['nao_atribuido'];
+?>
 <!DOCTYPE html>
 <html lang="pt-BR">
-    
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,12 +33,10 @@
     <link rel="stylesheet" href="assets/css/stylePainelControle.css">
     <script src="assets/js/scriptsPainelControle.js"></script>
 </head>
-
 <body>
     <div class="sidebar">
         <h2>Menu</h2>
         <ul>
-           
             <li><a href="#">Tickets</a></li>
             <li><a href="#">Admin</a></li>
             <li><a href="interfaceChamadoADM.php">Histórico chamados</a></li>
@@ -35,46 +58,29 @@
             </div>
         </header>
         <main>
+            <h3>Status dos Tickets</h3>
             <div class="stats">
                 <div class="stat-item">
-                    <p>Não resolvido</p>
-                    <h2>0</h2>
+                    <p>pendente</p>
+                    <h2><?php echo $pendente; ?></h2>
                 </div>
                 <div class="stat-item">
                     <p>Aberto</p>
-                    <h2>0</h2>
+                    <h2><?php echo $aberto; ?></h2>
                 </div>
                 <div class="stat-item">
-                    <p>Em espera</p>
-                    <h2>0</h2>
+                    <p>resolvido</p>
+                    <h2><?php echo $resolvido; ?></h2>
                 </div>
                 <div class="stat-item">
                     <p>Não atribuído</p>
-                    <h2>0</h2>
+                    <h2><?php echo $naoAtribuido; ?></h2>
                 </div>
             </div>
             <div class="details">
-                <div class="emails">
-                    <h3>E-mails não entregues</h3>
-                    <p>Em todo o helpdesk</p>
-                    <p>Grupo: Analistas</p>
-                    <p>21</p>
-                    <a href="#">Exibir detalhes</a>
-                </div>
-                <div class="tasks">
-                    <h3>Tarefas pendentes</h3>
-                    <button class="btn-add-task">Adicionar tarefa</button>
-                </div>
-                <div class="tickets">
-                    <h3>Tickets não resolvidos</h3>
-                    <p>Em todo o helpdesk</p>
-                    <p>Grupo: Analistas</p>
-                    <p>Abertos</p>
-                    <a href="#">Exibir detalhes</a>
-                </div>
+                <!-- Aqui você pode adicionar mais informações como desejado -->
             </div>
         </main>
     </div>
 </body>
-
 </html>

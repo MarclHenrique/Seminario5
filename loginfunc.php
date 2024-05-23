@@ -1,6 +1,6 @@
 <?php
 session_start();
-$_SESSION['cod_empresa'] = $codigo_da_empresa;
+
 require_once 'Database.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -26,9 +26,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $_SESSION['email'] = $email;
         $_SESSION['role'] = $role;
             if($role =='1'){
-            header("Location: PainelControleAdm.html");
+            header("Location: PainelControleAdm.php");
         } else if ($role == '2'){
-            header("Location: PainelControle.html");
+            header("Location: PainelControleA.php");
         }
         exit();
     } else {

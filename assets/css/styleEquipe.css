@@ -85,3 +85,24 @@ table tr:nth-child(even) {
 table tr:hover {
     background-color: #f0f0f0;
 }
+
+.action-form {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.action-form button {
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.icon-trash {
+    color: red; /* Cor da lixeira */
+    margin-left: 5px;
+}
+
+.icon-pen {
+    color: blue; /* Cor da caneta */
+    margin-left: 5px;
+}

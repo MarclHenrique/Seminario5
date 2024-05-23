@@ -1,5 +1,6 @@
 <?php
 session_start();
+echo "TESTE PRA VER CODIGO DA EMPRESA: ". $cod_empresa = $_SESSION['cod_empresa'];
 
 require_once 'database.php';
 
