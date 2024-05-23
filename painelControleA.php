@@ -8,12 +8,12 @@ require_once 'Database.php';
 if (isset($_SESSION['email'])) {
     // Recupera o email do analista da sessão
     $email = $_SESSION['email'];
+    $id_analista = $_SESSION['id_analista'];
 } else {
     // Se o email do analista não estiver na sessão, redireciona para a página de login
     header("Location: login.php");
     exit();
 }
-
 
 // Instancia a classe Database para obter a conexão
 $db = new Database();
@@ -96,7 +96,8 @@ $resolvidas = $row_tarefas['resolvidas'];
                     <h3>Tarefas pendentes</h3>
                     <p>Minhas tarefas pendentes: <?php echo $pendentes; ?></p>
                     <p>Minhas tarefas resolvidas: <?php echo $resolvidas; ?></p>
-                    <button class="btn-add-task">Puxar tickets abertos</button>
+                    <button class="btn-add-task" onclick="window.location.href='ticketsAbertos.php'">Puxar tickets abertos</button>
+
                 </div>
             </div>
         </main>

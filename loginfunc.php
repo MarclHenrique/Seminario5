@@ -17,27 +17,33 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $password = $conn->real_escape_string($password);
 
     // Consulta SQL para verificar o usuário e a senha
-    $sql = "SELECT * FROM usuarios WHERE email = '$email' AND senha = '$password' and tp_usuario = '$role'";
-
-    $result = $conn->query($sql);
+    $sql = "SELECT id_usuario, email FROM usuarios WHERE email = ? AND senha = ? AND tp_usuario = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("sss", $email, $password, $role);
+    $stmt->execute();
+    $result = $stmt->get_result();
 
     if ($result && $result->num_rows > 0) {
-        // O usuário foi encontrado, redireciona para o painel apropriado
-        $_SESSION['email'] = $email;
+        // O usuário foi encontrado
+        $row = $result->fetch_assoc();
+        $_SESSION['email'] = $row['email'];
+        $_SESSION['id_analista'] = $row['id_usuario'];
         $_SESSION['role'] = $role;
-            if($role =='1'){
+
+        // Redireciona para o painel apropriado
+        if($role == '1'){
             header("Location: PainelControleAdm.php");
         } else if ($role == '2'){
             header("Location: PainelControleA.php");
         }
         exit();
     } else {
-        echo "Usuário ou senha usuário incorretos!";
+        echo "Usuário ou senha incorretos!";
     }
 
+    $stmt->close();
     $conn->close();
 } else {
     echo "Método de requisição inválido.";
 }
-
 ?>
