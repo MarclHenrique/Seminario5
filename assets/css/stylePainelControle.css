@@ -9,8 +9,8 @@ body {
 }
 
 .sidebar {
-    width: 200px;
-    background-color: #504d4d;
+    width: 180px; /* Diminui a largura da barra lateral */
+    background-color: #343a40;
     color: white;
     padding-top: 20px;
     height: 100vh;
@@ -27,6 +27,7 @@ body {
 .sidebar h2 {
     text-align: center;
     margin-bottom: 20px;
+    font-size: 24px;
 }
 
 .sidebar ul {
@@ -37,8 +38,9 @@ body {
 
 .sidebar ul li {
     padding: 10px;
-    text-align: center;
+    text-align: left; /* Alinha o texto à esquerda */
     width: 100%;
+    transition: transform 0.3s; /* Adiciona transição suave */
 }
 
 .sidebar ul li a {
@@ -46,20 +48,19 @@ body {
     text-decoration: none;
     display: block;
     width: 100%;
-    padding: 10px;
-    transition: background-color 0.3s, padding 0.3s;
+    padding: 5px;
+    padding-left: 5px; /* Ajusta o padding-left */
+    transition: background-color 0.3s, transform 0.3s;
 }
 
 .sidebar ul li a:hover {
-    background-color: #444;
-    padding: 8px; /* Mantém o mesmo padding para evitar crescimento */
+    color: cyan;
 }
 
-
 .main-content {
-    margin-left: 200px;
-    padding: 8px;
-    width: calc(100% - 200px);
+    margin-left: 180px; /* Ajusta a margem esquerda para dar espaçamento à barra lateral */
+    padding: 20px;
+    width: calc(100% - 180px); /* Ajusta a largura do conteúdo principal */
     transition: margin-left 0.3s, width 0.3s;
     box-sizing: border-box;
 }
