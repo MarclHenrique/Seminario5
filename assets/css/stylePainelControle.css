@@ -19,18 +19,19 @@ body {
     left: 0;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
+    justify-content: flex-start;
     transition: width 0.3s;
     box-sizing: border-box;
 }
 
 .sidebar h2 {
-    text-align: center;
+    text-align: center; /* Centraliza o texto */
     margin-bottom: 20px;
+    margin-left: 70px; 
 }
 
 .sidebar ul {
-    
     list-style-type: none;
     padding: 0;
     width: 100%;
@@ -40,6 +41,7 @@ body {
     padding: 10px;
     text-align: center;
     width: 100%;
+    transition: transform 0.3s;
 }
 
 .sidebar ul li a {
@@ -47,19 +49,18 @@ body {
     text-decoration: none;
     display: block;
     width: 100%;
-    padding: 10px;
-    transition: background-color 0.3s, padding 0.3s;
+    padding: 5px;
+    padding-left: 0px;
+    transition: background-color 0.3s, transform 0.3s;
 }
 
 .sidebar ul li a:hover {
-    background-color: #444;
-    padding: 8px; /* Mantém o mesmo padding para evitar crescimento */
+    color: cyan;
 }
-
 
 .main-content {
     margin-left: 200px;
-    padding: 8px;
+    padding: 20px;
     width: calc(100% - 200px);
     transition: margin-left 0.3s, width 0.3s;
     box-sizing: border-box;
@@ -282,6 +283,7 @@ header {
 
     .details .emails,
     .details .tasks,
+    .details
     .details .tickets {
         width: 100%;
     }

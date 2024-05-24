@@ -1,4 +1,3 @@
-
 function scrollToSection(id) {
     const section = document.getElementById(id);
     const menuHeight = document.querySelector('.menu').offsetHeight;
@@ -19,6 +18,7 @@ function onScroll() {
         }
     });
 }
+
 function handleScroll() {
     if (!scrolling) {
         requestAnimationFrame(onScroll);
@@ -31,4 +31,3 @@ let scrolling = false;
 
 window.addEventListener('scroll', handleScroll);
 document.addEventListener('DOMContentLoaded', onScroll);
-
