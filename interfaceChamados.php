@@ -1,6 +1,5 @@
 <?php
 session_start();
-echo "TESTE PRA VER CODIGO DA EMPRESA: ". $cod_empresa = $_SESSION['cod_empresa'];
 
 require_once 'database.php';
 
@@ -18,11 +17,7 @@ $database = new Database();
 $conn = $database->getConnection();
 
 // Busca os chamados associados ao cliente logado e os detalhes do analista
-$sql = "SELECT t.id_ticket, t.titulo, t.descricao, t.status_ticket, 
-               IFNULL(e.nome, 'sem analista atribuído') AS nome_analista
-        FROM ticket t
-        LEFT JOIN usuarios e ON e.id_usuario = t.cod_analista
-        WHERE t.cod_empresa = ?";
+$sql = "CALL ConsultarTicketsPorEmpresa(?)";
 $stmt = $conn->prepare($sql);
 $stmt->bind_param("i", $cod_empresa);
 $stmt->execute();
@@ -42,6 +37,7 @@ $result = $stmt->get_result();
 
 <body>
     <div class="container">
+        <a href="javascript:history.go(-1);" class="back-button">Voltar</a>
         <h2>Seus Chamados</h2>
 
         <?php while ($row = $result->fetch_assoc()) : ?>

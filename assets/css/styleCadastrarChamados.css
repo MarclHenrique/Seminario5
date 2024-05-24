@@ -80,6 +80,49 @@ button[type="button"] {
 button[type="button"]:hover {
     background-color: #5a6268; /* Cor de fundo ao passar o mouse sobre o botão de fechar */
 }
+.notification {
+    position: fixed;
+    top: 5%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #4CAF50;
+    color: white;
+    padding: 15px;
+    border-radius: 5px;
+    display: none;
+    z-index: 1;
+}
+.notification {
+    position: fixed;
+    top: 5%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #4CAF50;
+    color: white;
+    padding: 15px;
+    border-radius: 5px;
+    display: none;
+    z-index: 1;
+}
+.notification.error {
+    background-color: #f44336;
+}
+.form-buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+.form-buttons button {
+    margin-top: 10px;
+}
+.back-button {
+    padding: 5px 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
 
 /* Responsividade */
 @media (max-width: 600px) {

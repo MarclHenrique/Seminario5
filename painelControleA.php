@@ -57,8 +57,7 @@ $resolvidas = $row_tarefas['resolvidas'];
     <div class="sidebar">
         <h2>Menu</h2>
         <ul>
-            <li><a href="#">Tickets</a></li>
-            <li><a href="#">Admin</a></li>
+            <li><a href="alterarStatusTicketA.php">Tickets</a></li>
             <li><a href="interfaceChamadoADM.php">Histórico chamados</a></li>
         </ul>
     </div>
@@ -72,9 +71,9 @@ $resolvidas = $row_tarefas['resolvidas'];
                     <a href="CadastroChamados.html" class="dropdown-toggle-link">
                         <button class="dropdown-toggle">Abrir chamado</button>
                     </a>
-                </div>
-                <input type="text" placeholder="Pesquisar">
-            </div>
+            <a href="TelaPrincipal.html" class="dropdown-toggle-link">
+                <button class="dropdown-toggle">Logout</button>
+            </a>
         </header>
         <main>
             <div class="stats">

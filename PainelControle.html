@@ -13,9 +13,7 @@
     <div class="sidebar">
         <h2>Menu</h2>
         <ul>
-            <li><a href="#">Histórico chamados</a></li>
-         
-            
+            <li><a href="PainelControle.html">Home</a></li>
             <li><a href="interfaceChamados.php">Histórico chamados</a></li>
 
         </ul>
@@ -29,49 +27,29 @@
                 <div class="dropdown">
                     <a href="CadastroChamados.html" class="dropdown-toggle-link">
                         <button class="dropdown-toggle">Abrir chamado</button>
+                    <a href="TelaPrincipal.html" class="dropdown-toggle-link">
+                        <button class="dropdown-toggle">Logout</button>
                     </a>
                 </div>
-                <input type="text" placeholder="Pesquisar">
             </div>
         </header>
         <main>
             <div class="stats">
                 <div class="stat-item">
                     <p>Não resolvido</p>
-                    <h2>0</h2>
+                    <h2><?php echo $naoResolvido; ?></h2>
                 </div>
                 <div class="stat-item">
                     <p>Aberto</p>
-                    <h2>0</h2>
-                </div>
-                <div class="stat-item">
-                    <p>Em espera</p>
-                    <h2>0</h2>
+                    <h2><?php echo $aberto; ?></h2>
                 </div>
                 <div class="stat-item">
                     <p>Não atribuído</p>
-                    <h2>0</h2>
+                    <h2><?php echo $naoAtribuido; ?></h2>
                 </div>
+            
             </div>
-            <div class="details">
-                <div class="emails">
-                    <h3>E-mails não entregues</h3>
-                    <p>Em todo o helpdesk</p>
-                    <p>Grupo: Analistas</p>
-                    <p>21</p>
-                    <a href="#">Exibir detalhes</a>
-                </div>
-                <div class="tasks">
-                    <h3>Tarefas pendentes</h3>
-                    <button class="btn-add-task">Adicionar tarefa</button>
-                </div>
-                <div class="tickets">
-                    <h3>Tickets não resolvidos</h3>
-                    <p>Em todo o helpdesk</p>
-                    <p>Grupo: Analistas</p>
-                    <p>Abertos</p>
-                    <a href="#">Exibir detalhes</a>
-                </div>
+            
             </div>
         </main>
     </div>

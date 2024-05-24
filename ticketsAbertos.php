@@ -15,11 +15,7 @@ $conn = $database->getConnection();
 
 if ($_SERVER["REQUEST_METHOD"] === "POST" || $_SERVER["REQUEST_METHOD"] === "GET") {
     // Busca todos os tickets abertos no banco junto com as informações do analista, se houver
-    $sql = "SELECT t.id_ticket, t.titulo, t.descricao, t.status_ticket, 
-                   IFNULL(u.nome, 'Sem analista atribuído') AS nome_analista
-            FROM ticket t
-            LEFT JOIN usuarios u ON t.cod_analista = u.id_usuario
-            WHERE t.status_ticket = 'Aberto'";
+    $sql = "CALL ConsultarTicketsAbertos()";
     $result = $conn->query($sql);
 } else {
     echo "Método de requisição inválido.";
@@ -39,6 +35,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" || $_SERVER["REQUEST_METHOD"] === "GET
 
 <body>
     <div class="container">
+        <a href="javascript:history.go(-1);" class="back-button">Voltar</a> <!-- Botão de voltar -->
         <h2>Chamados Abertos</h2>
 
         <?php if ($result && $result->num_rows > 0) : ?>

@@ -56,3 +56,42 @@ function isValidEmail(email) {
     var re = /\S+@\S+\.\S+/;
     return re.test(email);
 }
+
+function submitForm() {
+    // Coleta os dados do formulário
+    var form = document.getElementById('register-form');
+    var formData = new FormData(form);
+
+    // Cria a solicitação AJAX
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', 'registro.php', true);
+    xhr.onload = function () {
+        if (xhr.status === 200) {
+            // Exibe a notificação
+            var notification = document.getElementById('notification');
+            notification.style.display = 'block';
+
+            // Verifica a resposta do servidor
+            if (xhr.responseText.trim() === 'success') {
+                notification.innerHTML = 'Usuário cadastrado com sucesso!';
+                notification.classList.remove('error');
+                setTimeout(function () {
+                    notification.style.display = 'none';
+                }, 3000);
+            } else {
+                notification.innerHTML = xhr.responseText;
+                notification.classList.add('error');
+                setTimeout(function () {
+                    notification.style.display = 'none';
+                }, 3000);
+            }
+        } else {
+            alert('Erro ao enviar solicitação.');
+        }
+    };
+
+    xhr.send(formData);
+
+    // Retorna false para evitar o envio do formulário padrão
+    return false;
+}

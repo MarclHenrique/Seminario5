@@ -24,15 +24,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $conn = $database->getConnection();
 
     // Prepara a consulta SQL para evitar injeção de SQL
-    $sql = "INSERT INTO ticket (titulo, status_ticket, prioridade, descricao,cod_empresa ,data_hora) VALUES (?, ?, ?, ?, ?,?)";
+    $sql = "INSERT INTO ticket (titulo, status_ticket, prioridade, descricao, cod_empresa, data_hora) VALUES (?, ?, ?, ?, ?, ?)";
 
     if ($stmt = $conn->prepare($sql)) {
         // Vincula os parâmetros à consulta SQL
-        $stmt->bind_param("ssssss", $nome, $status_ticket, $prioridade, $descricao,$cod_empresa ,$data_hora);
+        $stmt->bind_param("ssssss", $nome, $status_ticket, $prioridade, $descricao, $cod_empresa, $data_hora);
 
         // Executa a consulta
         if ($stmt->execute()) {
-            echo "Chamado criado com sucesso.";
+            echo "success"; // Responde com 'success' em caso de sucesso
         } else {
             echo "Erro: Não foi possível criar o chamado. " . $stmt->error;
         }
@@ -45,5 +45,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Fecha a conexão
     $conn->close();
+} else {
+    echo "Método de requisição inválido.";
 }
 ?>

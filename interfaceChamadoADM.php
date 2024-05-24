@@ -33,6 +33,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" || $_SERVER["REQUEST_METHOD"] === "GET
 
 <body>
     <div class="container">
+        <a href="javascript:history.go(-1);" class="back-button">Voltar</a> <!-- Botão de voltar -->
         <h2>Todos os Chamados</h2>
 
         <?php if ($result && $result->num_rows > 0) : ?>
