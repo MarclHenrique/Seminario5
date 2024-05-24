@@ -21,21 +21,22 @@ $conn = $db->getConnection();
 
 // Consulta para contar o número de tickets em diferentes estados
 $sql = "SELECT 
-            COUNT(CASE WHEN status_ticket = 'Não resolvido' THEN 1 END) AS nao_resolvido,
+            COUNT(CASE WHEN status_ticket = 'pendente' THEN 1 END) AS pendente,
             COUNT(CASE WHEN status_ticket = 'Aberto' THEN 1 END) AS aberto,
-            COUNT(CASE WHEN status_ticket = 'Não atribuído' THEN 1 END) AS nao_atribuido
+            COUNT(CASE WHEN status_ticket = 'Resolvido' THEN 1 END) AS resolvido,
+            COUNT(CASE WHEN cod_analista IS NULL OR cod_analista = '' THEN 1 END) AS nao_atribuido
         FROM ticket";
 
 $result = $conn->query($sql);
 $row = $result->fetch_assoc();
 
-$naoResolvido = $row['nao_resolvido'];
+$pendente = $row['pendente'];
 $aberto = $row['aberto'];
 $naoAtribuido = $row['nao_atribuido'];
 
 $sql_tarefas = "SELECT 
-                    COUNT(CASE WHEN status_ticket = 'pendente' THEN 1 END) AS pendentes,
-                    COUNT(CASE WHEN status_ticket = 'resolvido' THEN 1 END) AS resolvidas
+                    COUNT(CASE WHEN status_ticket = 'pendente' AND cod_analista = $id_analista THEN 1 END) AS pendentes,
+                    COUNT(CASE WHEN status_ticket = 'resolvido' AND cod_analista = $id_analista THEN 1 END) AS resolvidas
                 FROM ticket";
 
 $result_tarefas = $conn->query($sql_tarefas);
@@ -64,22 +65,29 @@ $resolvidas = $row_tarefas['resolvidas'];
     <div class="main-content">
         <header>
             <div class="header-left">
-                <h1>Painel de Controle - Analista</h1>
+                <h1>Painel de Controle - Analista </h1>
+               
             </div>
             <div class="header-right">
                 <div class="dropdown">
+                    
                     <a href="CadastroChamados.html" class="dropdown-toggle-link">
                         <button class="dropdown-toggle">Abrir chamado</button>
                     </a>
             <a href="TelaPrincipal.html" class="dropdown-toggle-link">
                 <button class="dropdown-toggle">Logout</button>
             </a>
+           
         </header>
+       
         <main>
+            
             <div class="stats">
+            
                 <div class="stat-item">
-                    <p>Não resolvido</p>
-                    <h2><?php echo $naoResolvido; ?></h2>
+                    
+                    <p>Pendente</p>
+                    <h2><?php echo $pendente; ?></h2>
                 </div>
                 <div class="stat-item">
                     <p>Aberto</p>
@@ -92,7 +100,7 @@ $resolvidas = $row_tarefas['resolvidas'];
             </div>
             <div class="details">
                 <div class="tasks">
-                    <h3>Tarefas pendentes</h3>
+                    <h3>Minhas tarefas pendentes</h3>
                     <p>Minhas tarefas pendentes: <?php echo $pendentes; ?></p>
                     <p>Minhas tarefas resolvidas: <?php echo $resolvidas; ?></p>
                     <button class="btn-add-task" onclick="window.location.href='ticketsAbertos.php'">Puxar tickets abertos</button>

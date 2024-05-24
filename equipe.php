@@ -123,16 +123,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['action']) && $_POST['a
 </head>
 
 <body>
+    <a href="javascript:history.go(-1);" class="back-button">Voltar</a> <!-- Botão de voltar -->
     <div class="container">
+    
         <h2>Gerenciamento de Analistas</h2>
 
         <div class="sidebar">
         <h2>Menu</h2>
-        <ul>
-            <li><a href="PainelControle.html">Home</a></li>
-            <li><a href="interfaceChamados.php">Histórico chamados</a></li>
-
-        </ul>
+      
 
         <h3>Inserir Novo Analista</h3>
         <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">

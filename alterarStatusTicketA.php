@@ -17,9 +17,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['ticket_id']) && isset
     $stmt->bind_param("si", $new_status, $ticket_id);
 
     if ($stmt->execute()) {
-        echo "Status do ticket atualizado com sucesso.";
+         "Status do ticket atualizado com sucesso.";
     } else {
-        echo "Erro ao atualizar o status do ticket.";
+         "Erro ao atualizar o status do ticket.";
     }
 }
 
@@ -44,6 +44,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" || $_SERVER["REQUEST_METHOD"] === "GET
 </head>
 
 <body>
+<a href="javascript:history.go(-1);" class="back-button">Voltar</a> <!-- Botão de voltar -->
     <div class="container">
         <h2>Todos os Chamados</h2>
 
